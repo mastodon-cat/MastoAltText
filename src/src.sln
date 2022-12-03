@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listener", "ListenerEngine\Listener.csproj", "{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerEngine.Mastonet", "ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj", "{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastoAltText", "MastoAltText\MastoAltText.csproj", "{D32B56A2-2664-43B8-B0FD-A831BCE0328E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

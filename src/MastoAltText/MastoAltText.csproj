@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-MastoAltText-516cd5d4-d952-410a-a634-a789b5e474e8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ListenerEngine\Listener.csproj" />
+    <ProjectReference Include="..\ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj" />
+  </ItemGroup>
+</Project>

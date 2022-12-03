@@ -1,5 +1,4 @@
 using MastoAltText;
-using ListenerEngine;
 using ListenerEngine.Mastonet;
 
 IHost host = 
@@ -7,6 +6,8 @@ IHost host =
     .CreateDefaultBuilder(args)
     .ConfigureHostConfiguration(hostConfig =>
         {
+            // to get access token and mastodon instance from somewhere:
+            // json, env vars or command line arguments.
             hostConfig.SetBasePath(Directory.GetCurrentDirectory());
             hostConfig.AddJsonFile("mastodoncredentials.json", optional: true);
             hostConfig.AddEnvironmentVariables(prefix: "MASTOALTTEXT_");
@@ -15,8 +16,10 @@ IHost host =
     )
     .ConfigureServices(services =>
     {
-        services.AddHostedService<Worker>();        
-        services.AddSingleton<IListener, MastonetListener>();
+        services
+        .AddHostedService<Worker>()
+        // Dependency Injection
+        .AddMastonetListener();
     })
     .Build();
 

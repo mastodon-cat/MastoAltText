@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ListenerEngine\Listener.csproj" />
     <ProjectReference Include="..\ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj" />
   </ItemGroup>
 </Project>

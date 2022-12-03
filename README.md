@@ -11,3 +11,10 @@ dotnet run --Instance mastodon.cat --AccessToken _G_IUGzKminjtvm0DHpr5qPvmIcHvXt
 ```
 
 També es pot crear fitxer `mastodoncredentials.json` amb les credencials.
+
+O podeu optar per fer servir variables d'entorn:
+
+```bash
+export MASTOALTTEXT_INSTANCE="mastodon.cat"
+export MASTOALTTEXT_ACCESSTOKEN="_G_IUGzKminjtvm0DHpr5qPvmIcHvXtxpJORnqxr0tY"
+```

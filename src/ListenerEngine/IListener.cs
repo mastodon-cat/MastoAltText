@@ -2,14 +2,16 @@
 
  public class ListenerEventArgs : EventArgs
  {
-    public ListenerEventArgs(string user, string tootId, bool hasAltText)
+    public ListenerEventArgs(string accountId, string accountName, string tootId, bool hasAltText)
     {
-        User = user;
+        AccountId = accountId;
+        AccountName = accountName;
         TootId = tootId;
         HasAltText = hasAltText;
     }
 
-    public string User {get;}
+    public string AccountId {get;}
+    public string AccountName {get;}
     public string TootId {get;}
     public bool HasAltText {get;}
  }

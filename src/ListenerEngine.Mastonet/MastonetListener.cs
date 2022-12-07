@@ -1,6 +1,7 @@
 ﻿using Mastonet;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using DataClasses;
 
 namespace ListenerEngine.Mastonet;
 public class MastonetListener: ListenerEngine.IListener, IDisposable
@@ -47,21 +48,24 @@ public class MastonetListener: ListenerEngine.IListener, IDisposable
     private void OnUpdate(object? sender, StreamUpdateEventArgs e)
     {
         var tootId = e.Status.Id;
-        var user = e.Status.Account.AccountName;
+        var accountId = e.Status.Account.Id;
+        var accountName = e.Status.Account.AccountName;
         var hasMedia = e.Status.MediaAttachments.Any();
         var hasAltText = e.Status.MediaAttachments.Any(x=>!string.IsNullOrEmpty(x.Description));
+        var createdAt = e.Status.CreatedAt;
 
         Logger.LogInformation(
             "{tootId} de l'usuari {user} {temedia} {tealttext}",
             tootId,
-            user,
+            accountName,
             hasMedia?"conté media":"sense media",
             hasMedia&&hasAltText?" amb alt text":hasMedia&&!hasAltText?" sense alt text":""
         );
 
         if (hasMedia)
         {
-            var args = new ListenerEngine.ListenerEventArgs(user, tootId, hasAltText);
+            var mediaToot = new MediaToot(accountId, accountName, tootId, hasAltText, createdAt);
+            var args = new ListenerEngine.ListenerEventArgs(mediaToot);
             NewMediaToot?.Invoke(this, args);
         }
     }

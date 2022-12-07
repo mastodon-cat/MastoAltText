@@ -1,18 +1,16 @@
-﻿namespace ListenerEngine;
+﻿using DataClasses;
+
+namespace ListenerEngine;
 
  public class ListenerEventArgs : EventArgs
  {
-    public ListenerEventArgs(string user, string tootId, bool hasAltText)
+    public ListenerEventArgs(MediaToot mediaToot)
     {
-        User = user;
-        TootId = tootId;
-        HasAltText = hasAltText;
+        MediaToot = mediaToot;
     }
 
-    public string User {get;}
-    public string TootId {get;}
-    public bool HasAltText {get;}
- }
+    public MediaToot MediaToot { get; }
+}
 public interface IListener
 {   
     event EventHandler<ListenerEventArgs>? NewMediaToot; 

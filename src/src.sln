@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerEngine.Mastonet", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastoAltText", "MastoAltText\MastoAltText.csproj", "{D32B56A2-2664-43B8-B0FD-A831BCE0328E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine", "StoreEngine\StoreEngine.csproj", "{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine.DbContext", "StoreEngine.DbContext\StoreEngine.DbContext.csproj", "{FF825BCD-5499-4B21-AA37-17DE24578120}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D32B56A2-2664-43B8-B0FD-A831BCE0328E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF825BCD-5499-4B21-AA37-17DE24578120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF825BCD-5499-4B21-AA37-17DE24578120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF825BCD-5499-4B21-AA37-17DE24578120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF825BCD-5499-4B21-AA37-17DE24578120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

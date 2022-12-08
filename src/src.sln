@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine", "StoreEngine\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine.DbContext", "StoreEngine.DbContext\StoreEngine.DbContext.csproj", "{FF825BCD-5499-4B21-AA37-17DE24578120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine", "IntelligenceEngine\IntelligenceEngine.csproj", "{78F53B45-C445-46DB-8A75-01D79D1FA155}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.FirstVersion", "IntelligenceEngine.FirstVersion\IntelligenceEngine.FirstVersion.csproj", "{C386B8D4-1471-4236-A95A-36D106952F9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +46,13 @@ Global
 		{FF825BCD-5499-4B21-AA37-17DE24578120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF825BCD-5499-4B21-AA37-17DE24578120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF825BCD-5499-4B21-AA37-17DE24578120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78F53B45-C445-46DB-8A75-01D79D1FA155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78F53B45-C445-46DB-8A75-01D79D1FA155}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78F53B45-C445-46DB-8A75-01D79D1FA155}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78F53B45-C445-46DB-8A75-01D79D1FA155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C386B8D4-1471-4236-A95A-36D106952F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C386B8D4-1471-4236-A95A-36D106952F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C386B8D4-1471-4236-A95A-36D106952F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C386B8D4-1471-4236-A95A-36D106952F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

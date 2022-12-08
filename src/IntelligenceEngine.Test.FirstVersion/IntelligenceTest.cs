@@ -9,6 +9,7 @@ using FluentAssertions;
 
 namespace IntelligenceEngine.Test.FirstVersion;
 
+
 public class IntelligenceSimpleTest
 {
     private readonly ServiceProvider ServiceProvider;
@@ -47,7 +48,7 @@ public class IntelligenceSimpleTest
         // -- ARRANGE --
         var intelligence = ServiceProvider.GetRequiredService<Intelligence>();
 
-        var data = new [] {new MediaToot("", "", "", false, DateTime.Now) };
+        var data = TestHelpers.GetMediaToots(n: 1, withDescription: false);
 
         // -- ACT --
         var status = intelligence.GetCase(data);
@@ -55,6 +56,28 @@ public class IntelligenceSimpleTest
         // -- ASSERT --
         status.Should().Be(Intelligence.CaseEnum.FirstNonDescriptionToot);
     }
+
+    [Fact]
+    public void ConsecutiveNonDescriptionTootMultiple50Test()
+    {
+        // -- ARRANGE --
+        var intelligence = ServiceProvider.GetRequiredService<Intelligence>();
+
+        var data = 
+            Array.Empty<MediaToot>()
+            .Union(TestHelpers.GetMediaToots(n: 77, withDescription: true))
+            .Union(TestHelpers.GetMediaToots(n: 100, withDescription: false))            
+            ;
+
+        // -- ACT --
+        var status = intelligence.GetCase(data);
+
+        // -- ASSERT --
+        status.Should().Be(Intelligence.CaseEnum.ConsecutiveNonDescriptionTootMultiple50);
+    }
+
+
+    
 
     [Fact]
     public void AbleToGetTextFromConfiguration()

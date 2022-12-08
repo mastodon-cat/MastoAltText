@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine", "Intel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.FirstVersion", "IntelligenceEngine.FirstVersion\IntelligenceEngine.FirstVersion.csproj", "{C386B8D4-1471-4236-A95A-36D106952F9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.Test.FirstVersion", "IntelligenceEngine.Test.FirstVersion\IntelligenceEngine.Test.FirstVersion.csproj", "{DD01AA58-0C41-4B4C-8B46-20602B909192}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{C386B8D4-1471-4236-A95A-36D106952F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C386B8D4-1471-4236-A95A-36D106952F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C386B8D4-1471-4236-A95A-36D106952F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -59,7 +59,9 @@ public class Intelligence : IIntelligence
             return CaseEnum.ThirdNonDescriptionToot;
         }
 
-        if (toots.Any() && toots.Count() % 50 == 0 && toots.All(x => !x.HasAltText))
+        var lastNonDescription = GetLatestConsecutive(toots, withDescription: false);
+
+        if (lastNonDescription.Any() && lastNonDescription.Count() % 50 == 0 && lastNonDescription.All(x => !x.HasAltText))
         {
             return CaseEnum.ConsecutiveNonDescriptionTootMultiple50;
         }
@@ -77,7 +79,7 @@ public class Intelligence : IIntelligence
             return CaseEnum.ConsecutiveDescription15Toot;
         }
 
-        var latestsWithDesc = GetLatestTootsWithDescription(toots);
+        var latestsWithDesc = GetLatestConsecutive(toots, withDescription: true);
 
         if (latestsWithDesc.Any() && latestsWithDesc.Count() % 50 == 0 && startingAtWithDesc.All(x => x.HasAltText))
         {
@@ -106,15 +108,15 @@ public class Intelligence : IIntelligence
         }
 
         // No case
-
         return CaseEnum.NoCase;
     }
 
-    private IEnumerable<MediaToot> GetLatestTootsWithDescription(IEnumerable<MediaToot> toots)
+
+    private IEnumerable<MediaToot> GetLatestConsecutive(IEnumerable<MediaToot> toots, bool withDescription)
     {
         var tootsaux = toots;
         var totsauxreverse = tootsaux.Reverse();
-        var goodToots = totsauxreverse.TakeWhile(t => t.HasAltText);
+        var goodToots = totsauxreverse.TakeWhile(t => t.HasAltText == withDescription);
         return goodToots.Reverse().ToList();
     }
 
@@ -128,9 +130,7 @@ public class Intelligence : IIntelligence
         =>
         TryException( ()=> 
             Configuration
-            .GetValue<Dictionary<string, Dictionary<string, string>>>("Toots")!
-            .GetValueOrDefault(LANG)!
-            .GetValueOrDefault(situation.ToString())!
+            .GetValue<string>($"Toots:{LANG}:{situation}")!
             .ToString()
             ,
             $"Missatge per a [{situation}] no trobat a la configuració."

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.FirstVer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.Test.FirstVersion", "IntelligenceEngine.Test.FirstVersion\IntelligenceEngine.Test.FirstVersion.csproj", "{DD01AA58-0C41-4B4C-8B46-20602B909192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataClasses", "DataClasses\DataClasses.csproj", "{6DC6ECD0-F8D8-46F3-9372-855A3090F837}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD01AA58-0C41-4B4C-8B46-20602B909192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DC6ECD0-F8D8-46F3-9372-855A3090F837}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DC6ECD0-F8D8-46F3-9372-855A3090F837}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DC6ECD0-F8D8-46F3-9372-855A3090F837}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DC6ECD0-F8D8-46F3-9372-855A3090F837}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

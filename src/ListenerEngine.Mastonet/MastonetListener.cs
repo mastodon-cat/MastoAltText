@@ -58,7 +58,7 @@ public class MastonetListener : ListenerEngine.IListener
 
 		if (hasMedia)
 		{
-			var mediaToot = new MediaToot(accountId, accountName, tootId, hasAltText, createdAt);
+			var mediaToot = new MediaToot(null, accountId, accountName, tootId, hasAltText, createdAt);
 			var args = new ListenerEngine.ListenerEventArgs(mediaToot);
 			NewMediaToot?.Invoke(this, args);
 		}

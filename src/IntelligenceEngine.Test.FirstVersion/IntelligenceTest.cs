@@ -1,95 +1,85 @@
-using Microsoft.Extensions.DependencyInjection;
-using IntelligenceEngine.FirstVersion;
-using System.Configuration;
-using Microsoft.Extensions.Configuration;
-using System.Text.Json;
+﻿using Moq;
+
+using StoreEngine;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using DataClasses;
-using FluentAssertions;
+using System.Threading.Tasks;
+using IntelligenceEngine.FirstVersion;
+using Microsoft.Extensions.Options;
+using IntelligenceEngine.FirstVersion.Entities;
 
-namespace IntelligenceEngine.Test.FirstVersion;
-
-
-public class IntelligenceSimpleTest
+namespace IntelligenceEngine.Test.FirstVersion
 {
-    private readonly ServiceProvider ServiceProvider;
-    public IntelligenceSimpleTest()
-    {
-        var jsonconfstring = @"{
-            ""Toots"": {
-                ""cat"": {
-                    ""FirstNonDescriptionToot"":""T1"",
-                    ""SecondNonDescriptionToot"":""T2"",
-                    ""ThirdNonDescriptionToot"":""T3"",
-                    ""ConsecutiveNonDescriptionTootMultiple50"":""T4"",
-                    ""NoCase"":""""      
-                }
-            }        
-        }";
+    public class IntelligenceTest
+	{
 
-        var configuration = 
-            new ConfigurationBuilder()
-            .AddJsonStream(new MemoryStream(Encoding.ASCII.GetBytes(jsonconfstring)))
-            .Build();
+		[Fact]
+		public async Task GetMessage_ReturnsSecondMessage_WhenTotalTootsEquals3()
+		{
+			var list = new List<AppMessage> {
+				new AppMessage
+				{
+					Conditions = new List<AppMessage.Condition>
+					{
+						new AppMessage.Condition("TotalToots", "==", "1")
+					},
+					MessageType = MessageType.Warn,
+					Message = "first",
+				},
+				new AppMessage
+				{
+					Conditions = new List<AppMessage.Condition>
+					{
+						new AppMessage.Condition("TotalToots", "==", "3")
+					},
+					MessageType = MessageType.Warn,
+					Message = "second",
+				}
+			};
+			var listWrapped = Options.Create(list);
+			var store = TestHelpers.CreateMockStore(3, 0, 0, 3);
+			var intelligence = new IntelligenceEngine.FirstVersion.Intelligence(listWrapped, store.Object);
+			var message = await intelligence.GetMessage("abcde");
+			Assert.Equal("second", message.Message);
+		}
 
-        var services = 
-            new ServiceCollection()
-            .AddSingleton<IConfiguration>(configuration)
-            .AddSingleton<Intelligence>();
+		
+		[Fact]
+		public async Task GetMessage_ReturnsSecondMessage_WhenTotalTootsEquals3_AndConsecutiveWithDescriptionsEquals2()
+		{
+			var list = new List<AppMessage> {
+				new AppMessage
+				{
+					Conditions = new List<AppMessage.Condition>
+					{
+						new AppMessage.Condition("TotalToots", "==", "3"),
+						new AppMessage.Condition("LastConsecutivesWithDescription ", "==", "0")
+					},
+					MessageType = MessageType.Warn,
+					Message = "first",
+				},
+				new AppMessage
+				{
+					Conditions = new List<AppMessage.Condition>
+					{
+						new AppMessage.Condition("TotalToots", "==", "3"),
+						new AppMessage.Condition("LastConsecutivesWithDescription ", "==", "2")
+					},
+					MessageType = MessageType.Warn,
+					Message = "second",
+				}
+			};
+			
+			var listWrapped = Options.Create(list);
+			var store = TestHelpers.CreateMockStore(3, 2, 2, 1);
 
-        ServiceProvider = 
-            services
-            .BuildServiceProvider();
-    }
+			var intelligence = new Intelligence(listWrapped, store.Object);
+			var message = await intelligence.GetMessage("abcde");
+			Assert.Equal("second", message.Message);
+		}
 
-    [Fact]
-    public void FirstNonDescriptionTootTest()
-    {
-        // -- ARRANGE --
-        var intelligence = ServiceProvider.GetRequiredService<Intelligence>();
-
-        var data = TestHelpers.GetMediaToots(n: 1, withDescription: false);
-
-        // -- ACT --
-        var status = intelligence.GetCase(data);
-
-        // -- ASSERT --
-        status.Should().Be(Intelligence.CaseEnum.FirstNonDescriptionToot);
-    }
-
-    [Fact]
-    public void ConsecutiveNonDescriptionTootMultiple50Test()
-    {
-        // -- ARRANGE --
-        var intelligence = ServiceProvider.GetRequiredService<Intelligence>();
-
-        var data = 
-            Array.Empty<MediaToot>()
-            .Union(TestHelpers.GetMediaToots(n: 77, withDescription: true))
-            .Union(TestHelpers.GetMediaToots(n: 100, withDescription: false))            
-            ;
-
-        // -- ACT --
-        var status = intelligence.GetCase(data);
-
-        // -- ASSERT --
-        status.Should().Be(Intelligence.CaseEnum.ConsecutiveNonDescriptionTootMultiple50);
-    }
-
-
-    
-
-    [Fact]
-    public void AbleToGetTextFromConfiguration()
-    {
-        // -- ARRANGE --
-        var intelligence = ServiceProvider.GetRequiredService<Intelligence>();
-
-
-        // -- ACT --
-        var msg = intelligence.GetTootFromCase(Intelligence.CaseEnum.FirstNonDescriptionToot);
-
-        // -- ASSERT --
-        msg.Should().Be("T1");
-    }
+	}
 }

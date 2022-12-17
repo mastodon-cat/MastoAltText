@@ -1,8 +1,9 @@
 ﻿namespace DataClasses;
 public class MediaToot
 {
-    public MediaToot(string accountId, string accountName, string tootId, bool hasAltText, DateTime createdAt)
+    public MediaToot(int? sequenceNumber, string accountId, string accountName, string tootId, bool hasAltText, DateTime createdAt)
     {
+        SequenceNumber = sequenceNumber;
         AccountId = accountId;
         AccountName = accountName;
         TootId = tootId;
@@ -10,6 +11,7 @@ public class MediaToot
         CreatedAt = createdAt;
     }
 
+    public int? SequenceNumber { get; set; }
     public string AccountId {get;  }
     public string AccountName {get; }
     public string TootId {get; }

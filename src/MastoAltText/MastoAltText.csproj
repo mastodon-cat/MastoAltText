@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IntelligenceEngine.FirstVersion\IntelligenceEngine.FirstVersion.csproj" />
     <ProjectReference Include="..\ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj" />
+    <ProjectReference Include="..\StoreEngine.DbContext\StoreEngine.DbContext.csproj" />
   </ItemGroup>
 </Project>

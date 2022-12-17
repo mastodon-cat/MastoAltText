@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StoreEngine.DbContext;
 
@@ -10,9 +11,11 @@ using StoreEngine.DbContext;
 namespace StoreEngine.DbContext.Migrations
 {
     [DbContext(typeof(MastoAltTextDbContext))]
-    partial class MastoAltTextDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221217135036_AddedSequenceNumberToToots")]
+    partial class AddedSequenceNumberToToots
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");

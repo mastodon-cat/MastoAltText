@@ -1,80 +1,107 @@
 ﻿using DataClasses;
+
 using Microsoft.EntityFrameworkCore;
+
+using System.Linq.Expressions;
 
 namespace StoreEngine.DbContext;
 
 public class Store : IStore
 {
-    private readonly IDbContextFactory<MastoAltTextDbContext> ContextFactory;
+	private readonly MastoAltTextDbContext dbContext;
 
-    public Store(IDbContextFactory<MastoAltTextDbContext> contextFactory)
-    {
-        ContextFactory = contextFactory;
-        Initialize();
-    }
+	public Store(IDbContextFactory<MastoAltTextDbContext> contextFactory)
+	{
+		dbContext = contextFactory.CreateDbContext();
+		Initialize();
+	}
 
-    public void Dispose()
-    {
-    }
+	public void Dispose()
+	{
+		dbContext.Dispose();
+	}
 
-    public async Task<List<MediaToot>> GetMediaTootsByUserIdAsync(string userId, int? year)
-    {
-        using var ctx = 
-            await 
-            ContextFactory
-            .CreateDbContextAsync();
+	public Task<List<MediaToot>> GetMediaTootsByUserIdAsync(string userId, int? year)
+	{
+		var query =
+			dbContext
+			.MediaToots
+			.Where(m => m.AccountId == userId);
 
-        var query =
-            ctx
-            .MediaToots
-            .Where(m => m.AccountId == userId);
-        
-        if (year.HasValue)
-            query = query.Where(m => m.CreatedAt.Year == year);
+		if (year.HasValue)
+			query = query.Where(m => m.CreatedAt.Year == year);
 
-        var result =            
-            await
-            query
-            .OrderBy(m=>m.CreatedAt)
-            .ToListAsync();        
+		return
+		query
+		.OrderBy(m => m.CreatedAt)
+		.Select(m => m.AsData())
+		.ToListAsync();
+	}
 
-        return
-            result
-            .Select(m => m.AsData())
-            .ToList();
-    }
+	public Task<int> GetTootCountByUserIdAsync(string userId, bool? withDescription = null)
+	{
+		IQueryable<MediaTootModel> query = dbContext.MediaToots;
+		if (withDescription.HasValue)
+		{
+			if (withDescription.Value)
+			{
+				query = query.Where(t => t.HasAltText);
+			}
+			else
+			{
+				query = query.Where(t => !t.HasAltText);
+			}
+		}
+
+		return query.CountAsync(t => t.AccountId == userId);
+	}
+
+	public Task<int> GetNumberOfConsecutiveTootsWithDescriptionByUserIdAsync(string userId) =>
+		GetNumberOfConsecutiveTootsByUserIdInternal(userId, true);
 
 
-    public async Task SaveMediaTootAsync(MediaToot mediaToot)
-    {
-        using var ctx = 
-            await 
-            ContextFactory
-            .CreateDbContextAsync();
-        
-        ctx
-            .MediaToots
-            .Add(
-                mediaToot.AsModel()
-            );
+	public Task<int> GetNumberOfConsecutiveTootsWithoutDescriptionByUserIdAsync(string userId) =>
+		GetNumberOfConsecutiveTootsByUserIdInternal(userId, false);
 
-        await 
-            ctx
-            .SaveChangesAsync();
-    }
+	private async Task<int> GetNumberOfConsecutiveTootsByUserIdInternal(string userId, bool withDescription)
+	{
+		var totalToots = await this.GetTootCountByUserIdAsync(userId);
+		var cutPoint = await dbContext.MediaToots
+			.Where(t => t.AccountId == userId && t.HasAltText == !withDescription)
+			.OrderByDescending(t => t.CreatedAt)
+			.FirstOrDefaultAsync();
 
-    public void Initialize()
-    {
-        using var ctx = 
-            ContextFactory
-            .CreateDbContext();
+		if (cutPoint == null)
+		{
+			return totalToots;
+		}
 
-        var db =
-            ctx
-            .Database;
+		return totalToots - cutPoint.UserSequenceNumber;
+	}
 
-        db
-            .Migrate();
-    }
 
+	public async Task SaveMediaTootAsync(MediaToot mediaToot)
+	{
+		var tootDb = mediaToot.AsModel();
+		var lastUserToot = await dbContext.MediaToots
+			.Where(t => t.AccountId == mediaToot.AccountId)
+			.OrderByDescending(t => t.CreatedAt)
+			.FirstOrDefaultAsync();
+		tootDb.UserSequenceNumber = lastUserToot?.UserSequenceNumber ?? 1;
+		await dbContext
+			.MediaToots
+			.AddAsync(tootDb);
+			await dbContext
+			.SaveChangesAsync();
+	}
+
+	public void Initialize()
+	{
+		var db =
+			dbContext
+			.Database;
+
+		db
+			.Migrate();
+	}
 }

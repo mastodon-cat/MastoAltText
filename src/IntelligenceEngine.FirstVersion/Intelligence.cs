@@ -113,13 +113,13 @@ public class Intelligence : IIntelligence
 
 
     private IEnumerable<MediaToot> GetLatestConsecutive(IEnumerable<MediaToot> toots, bool withDescription)
-    {
-        var tootsaux = toots;
-        var totsauxreverse = tootsaux.Reverse();
-        var goodToots = totsauxreverse.TakeWhile(t => t.HasAltText == withDescription);
-        return goodToots.Reverse().ToList();
-    }
-
+        =>
+        toots
+        .Reverse()
+        .TakeWhile(t => t.HasAltText == withDescription)
+        .Reverse()
+        .ToList();
+ 
     private IEnumerable<MediaToot> SkipFirstsNonDescriptionToots(IEnumerable<MediaToot> toots)
     {
         var n = toots.TakeWhile(t => !t.HasAltText).Count();

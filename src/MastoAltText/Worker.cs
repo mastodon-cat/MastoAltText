@@ -21,7 +21,7 @@ public class Worker : IHostedService
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        Listener.Stop();
+        Listener.Dispose();
         Logger.LogInformation("Worker stoped");
         return Task.CompletedTask;
     }

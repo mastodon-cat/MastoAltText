@@ -1,8 +1,6 @@
 using MastoAltText;
 using ListenerEngine.Mastonet;
 using System.Reflection;
-using ListenerEngine.Mastonet.Config;
-
 
 IHost host =
 	Host
@@ -20,10 +18,9 @@ IHost host =
 	)
 	.ConfigureServices((hostBuilderContext, services) =>
 	{
-		services.Configure<MastonetConfig>(hostBuilderContext.Configuration.GetSection(nameof(MastonetConfig)));
 		services.AddHostedService<Worker>()
 		// Dependency Injection
-		.AddMastonetListener();
+		.AddMastonetListener(hostBuilderContext.Configuration);
 	})
 	.Build();
 

@@ -1,5 +1,6 @@
 using MastoAltText;
 using ListenerEngine.Mastonet;
+using System.Reflection;
 
 IHost host = 
     Host
@@ -12,6 +13,7 @@ IHost host =
             hostConfig.AddJsonFile("mastodoncredentials.json", optional: true);
             hostConfig.AddEnvironmentVariables(prefix: "MASTOALTTEXT_");
             hostConfig.AddCommandLine(args);
+            hostConfig.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
         }
     )
     .ConfigureServices(services =>

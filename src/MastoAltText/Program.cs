@@ -4,6 +4,7 @@ using ListenerEngine.Mastonet;
 using MastoAltText;
 using StoreEngine.DbContext;
 using System.Reflection;
+using SenderEngine.Mastonet;
 
 IHost host =
 	Host
@@ -26,6 +27,7 @@ IHost host =
 			.AddHostedService<Worker>()
 			// Dependency Injection
 			.AddMastonetListener(hostBuilderContext.Configuration)
+			.AddMastonetSender(hostBuilderContext.Configuration)
 			.AddIntelligenceEngine()
 			.AddStoreEngine(hostBuilderContext.Configuration);
 	})

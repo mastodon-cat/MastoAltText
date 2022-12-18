@@ -1,16 +1,8 @@
 using IntelligenceEngine.FirstVersion.Entities;
 using IntelligenceEngine.FirstVersion.Extensions;
-
 using ListenerEngine.Mastonet;
-using ListenerEngine.Mastonet.Config;
-
 using MastoAltText;
-
-using Microsoft.EntityFrameworkCore;
-
-using StoreEngine;
 using StoreEngine.DbContext;
-
 using System.Reflection;
 
 IHost host =
@@ -29,17 +21,13 @@ IHost host =
 	)
 	.ConfigureServices((hostBuilderContext, services) =>
 	{
-		services.Configure<List<AppMessage>>(hostBuilderContext.Configuration.GetSection("AppMessages"));
-		services.Configure<MastonetConfig>(hostBuilderContext.Configuration.GetSection(nameof(MastonetConfig)));
-		services.AddHostedService<Worker>()
-		// Dependency Injection
-		.AddMastonetListener()
-		.AddIntelligenceEngine()
-		.AddDbContextFactory< MastoAltTextDbContext>(builder =>
-		{
-			builder.UseSqlite(hostBuilderContext.Configuration.GetConnectionString("MastonetDbContextDatabase"));
-		})
-		.AddSingleton<IStore, Store>();
+		services
+			.Configure<List<AppMessage>>(hostBuilderContext.Configuration.GetSection("AppMessages"))
+			.AddHostedService<Worker>()
+			// Dependency Injection
+			.AddMastonetListener(hostBuilderContext.Configuration)
+			.AddIntelligenceEngine()
+			.AddStoreEngine(hostBuilderContext.Configuration);
 	})
 	.Build();
 

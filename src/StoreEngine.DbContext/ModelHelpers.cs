@@ -2,7 +2,7 @@ namespace StoreEngine.DbContext;
 
 using DataClasses;
 
-public static class Class2ModelHelpers
+public static class ModelHelpers
 {
     public static MediaTootModel AsModel(this MediaToot mediaToot)
         =>
@@ -18,6 +18,7 @@ public static class Class2ModelHelpers
     public static MediaToot AsData(this MediaTootModel model)
         =>
         new(
+            model.Id,
             model.AccountId,
             model.AccountName,
             model.TootId,

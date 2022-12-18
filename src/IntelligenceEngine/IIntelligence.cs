@@ -1,6 +1,5 @@
 ﻿namespace IntelligenceEngine;
 public interface  IIntelligence
 {
-    string GetTootFromData(IEnumerable<DataClasses.MediaToot> toots);
-
+    Task<IUserMessage?> GetMessage(string userId);
 }

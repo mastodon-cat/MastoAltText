@@ -1,17 +1,20 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace StoreEngine.DbContext;
 
 public static class MastonetListenerServiceExtensions
 {
-    public static IServiceCollection ConfigureServices(IServiceCollection services)
+    public static IServiceCollection AddStoreEngine(
+        this IServiceCollection services, 
+        IConfiguration configuration)
         =>
         services
         .AddDbContextFactory<MastoAltTextDbContext>(
             options =>
-                options.UseSqlite(@"Server=(localdb)\mssqllocaldb;Database=Test")
+                options.UseSqlite(configuration.GetConnectionString("MastonetDbContextDatabase"))
         )
         .AddSingleton<IStore, Store>();
     

@@ -1,5 +1,8 @@
-using MastoAltText;
+using IntelligenceEngine.FirstVersion.Entities;
+using IntelligenceEngine.FirstVersion.Extensions;
 using ListenerEngine.Mastonet;
+using MastoAltText;
+using StoreEngine.DbContext;
 using System.Reflection;
 
 IHost host =
@@ -18,9 +21,13 @@ IHost host =
 	)
 	.ConfigureServices((hostBuilderContext, services) =>
 	{
-		services.AddHostedService<Worker>()
-		// Dependency Injection
-		.AddMastonetListener(hostBuilderContext.Configuration);
+		services
+			.Configure<List<AppMessage>>(hostBuilderContext.Configuration.GetSection("AppMessages"))
+			.AddHostedService<Worker>()
+			// Dependency Injection
+			.AddMastonetListener(hostBuilderContext.Configuration)
+			.AddIntelligenceEngine()
+			.AddStoreEngine(hostBuilderContext.Configuration);
 	})
 	.Build();
 

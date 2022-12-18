@@ -6,6 +6,7 @@ namespace StoreEngine.DbContext;
 public class MediaTootModel
 {
     public int Id {get; set;}
+    public int UserSequenceNumber { get; set; }
     public string AccountId {get; set; } = default!;
     public string AccountName {get;  set; } = default!;
     public string TootId {get;  set; } = default!;

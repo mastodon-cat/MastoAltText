@@ -1,6 +1,6 @@
-﻿namespace ListenerEngine.Mastonet.Config;
+﻿namespace DataClasses;
 
-public record MastonetConfig
+public record MastodonParms
 {
 	public string? Instance { get; init; }
 	public string? AccessToken { get; init; }

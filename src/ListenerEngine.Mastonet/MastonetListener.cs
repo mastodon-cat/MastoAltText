@@ -2,17 +2,16 @@
 using Microsoft.Extensions.Logging;
 using DataClasses;
 using Microsoft.Extensions.Options;
-using ListenerEngine.Mastonet.Config;
 
 namespace ListenerEngine.Mastonet;
 public class MastonetListener : ListenerEngine.IListener
 {
-	private readonly MastonetConfig config;
+	private readonly MastodonParms config;
 	private readonly MastodonClient client;
 	private readonly ILogger<MastonetListener> logger;
 	private TimelineStreaming? streaming = null;
 	
-	public MastonetListener(IOptions<MastonetConfig> config, ILogger<MastonetListener> logger)
+	public MastonetListener(IOptions<MastodonParms> config, ILogger<MastonetListener> logger)
 	{
 		this.config = config.Value;
 		this.logger = logger;
@@ -49,11 +48,10 @@ public class MastonetListener : ListenerEngine.IListener
 		var createdAt = e.Status.CreatedAt;
 
 		logger.LogInformation(
-			"{tootId} de l'usuari {user} {temedia} {tealttext}",
-			tootId,
-			accountName,
-			hasMedia ? "conté media" : "sense media",
-			hasMedia && hasAltText ? " amb alt text" : hasMedia && !hasAltText ? " sense alt text" : ""
+			$"StatusId: [{tootId}] AccountName [{accountName}] AccountId: [{accountId}] " +
+			"HasMedia: [{hasMedia}] HasAltText: [{hasAltText}]",
+			hasMedia ? "yes" : "no",
+			hasMedia && hasAltText ? "yes" : hasMedia && !hasAltText ? "no" : ""
 		);
 
 		if (hasMedia)

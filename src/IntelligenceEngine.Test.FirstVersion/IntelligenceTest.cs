@@ -1,13 +1,4 @@
-﻿using Moq;
-
-using StoreEngine;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IntelligenceEngine.FirstVersion;
+﻿using IntelligenceEngine.FirstVersion;
 using Microsoft.Extensions.Options;
 using IntelligenceEngine.FirstVersion.Entities;
 

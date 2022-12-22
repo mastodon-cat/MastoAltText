@@ -1,6 +1,7 @@
 ﻿using IntelligenceEngine.FirstVersion;
 using Microsoft.Extensions.Options;
 using IntelligenceEngine.FirstVersion.Entities;
+using FluentAssertions;
 
 namespace IntelligenceEngine.Test.FirstVersion
 {
@@ -34,7 +35,7 @@ namespace IntelligenceEngine.Test.FirstVersion
 			var store = TestHelpers.CreateMockStore(3, 0, 0, 3);
 			var intelligence = new IntelligenceEngine.FirstVersion.Intelligence(listWrapped, store.Object);
 			var message = await intelligence.GetMessage("abcde");
-			Assert.Equal("second", message.Message);
+			message!.Message.Should().Be("second");
 		}
 
 		
@@ -69,7 +70,7 @@ namespace IntelligenceEngine.Test.FirstVersion
 
 			var intelligence = new Intelligence(listWrapped, store.Object);
 			var message = await intelligence.GetMessage("abcde");
-			Assert.Equal("second", message.Message);
+			message!.Message.Should().Be("second");
 		}
 
 	}

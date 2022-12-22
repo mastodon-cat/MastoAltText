@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace StoreEngine.DbContext.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,13 +16,14 @@ namespace StoreEngine.DbContext.Migrations
                 name: "MediaToots",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    AccountId = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    AccountName = table.Column<string>(type: "TEXT", maxLength: 250, nullable: false),
-                    TootId = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false),
-                    HasAltText = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserSequenceNumber = table.Column<int>(type: "integer", nullable: false),
+                    AccountId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    AccountName = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    TootId = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    HasAltText = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

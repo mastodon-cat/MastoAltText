@@ -29,7 +29,7 @@ public class UnitTest1
 
         // StatusId: [109535551891158730] AccountName [ctrl_alt_d] AccountId: [109378184178969113]
         var sender = services.GetRequiredService<ISender>();
-        var u = 1;
+
         if (confirm)
         {
             await sender.SendToot(

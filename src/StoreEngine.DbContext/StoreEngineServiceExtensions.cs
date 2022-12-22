@@ -14,7 +14,7 @@ public static class MastonetListenerServiceExtensions
         services
         .AddDbContextFactory<MastoAltTextDbContext>(
             options =>
-                options.UseSqlite(configuration.GetConnectionString("MastonetDbContextDatabase"))
+                options.UseNpgsql(configuration.GetConnectionString("MastonetDbContextDatabase"))
         )
         .AddSingleton<IStore, Store>();
     

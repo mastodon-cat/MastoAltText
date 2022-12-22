@@ -18,8 +18,8 @@ public class BloggingContextFactory : IDesignTimeDbContextFactory<MastoAltTextDb
         var optionsBuilder = 
             new
             DbContextOptionsBuilder<MastoAltTextDbContext>()
-            // .UseNpgsql(configuration.GetConnectionString("MastonetDbContextDatabase"));
-            .UseNpgsql("Fake connection string");
+            .UseNpgsql(configuration.GetConnectionString("MastonetDbContextDatabase"));
+            
         return new MastoAltTextDbContext(optionsBuilder.Options);
     }
 }

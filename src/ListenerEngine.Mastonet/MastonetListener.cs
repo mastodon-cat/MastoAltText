@@ -31,18 +31,24 @@ public class MastonetListener : ListenerEngine.IListener
 		}
 	}
 
-	public void Start()
-	{
-		CheckCredentials();
-
-		streaming = client.GetPublicLocalStreaming();
-		streaming.OnUpdate += OnUpdate;
-		streaming.Start();
-	}
-
-    private void CheckCredentials()
+	public async Task Start()
     {
-		var usr = client.GetCurrentUser().GetAwaiter().GetResult();			
+        await CheckCredentials();
+
+        streaming = client.GetPublicLocalStreaming();
+        streaming.OnUpdate += OnUpdate;
+
+        StartTask();
+    }
+
+    private void StartTask()
+    {
+        streaming!.Start();
+    }
+
+    private async Task CheckCredentials()
+    {
+		var usr = await client.GetCurrentUser();			
 		logger.LogDebug("Connectat com {}", usr.AccountName);
     }
 

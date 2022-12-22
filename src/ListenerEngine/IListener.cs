@@ -2,5 +2,5 @@
 public interface IListener : IDisposable
 {   
     event EventHandler<ListenerEventArgs>? NewMediaToot; 
-    void Start();
+    Task Start();
 }

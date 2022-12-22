@@ -1,4 +1,3 @@
-using IntelligenceEngine.FirstVersion.Entities;
 using IntelligenceEngine.FirstVersion.Extensions;
 using ListenerEngine.Mastonet;
 using MastoAltText;
@@ -9,28 +8,35 @@ using SenderEngine.Mastonet;
 IHost host =
 	Host
 	.CreateDefaultBuilder(args)
-	.ConfigureAppConfiguration(hostConfig =>
-		{
-			// to get access token and mastodon instance from somewhere:
-			// json, env vars or command line arguments.
-			hostConfig.SetBasePath(Directory.GetCurrentDirectory());
-			hostConfig.AddJsonFile("mastodoncredentials.json", optional: true);
-			hostConfig.AddEnvironmentVariables(prefix: "MASTOALTTEXT_");			
-			hostConfig.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
-			hostConfig.AddCommandLine(args);
-		}
+
+	// configuration
+	.ConfigureAppConfiguration( hostConfig =>
+
+		hostConfig
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("mastodoncredentials.json", optional: true)
+			.AddEnvironmentVariables(prefix: "MASTOALTTEXT_")	
+			.AddUserSecrets(Assembly.GetExecutingAssembly(), true)
+			.AddCommandLine(args)		
+
 	)
-	.ConfigureServices((hostBuilderContext, services) =>
-	{
+
+	// services
+	.ConfigureServices( (hostBuilderContext, services) =>
+
 		services
-			.Configure<List<AppMessage>>(hostBuilderContext.Configuration.GetSection("AppMessages"))
+
+			// The worker
 			.AddHostedService<Worker>()
-			// Dependency Injection
+
+			// Dependencies
 			.AddMastonetListener(hostBuilderContext.Configuration)
 			.AddMastonetSender(hostBuilderContext.Configuration)
-			.AddIntelligenceEngine()
-			.AddStoreEngine(hostBuilderContext.Configuration);
-	})
+			.AddIntelligenceEngine(hostBuilderContext.Configuration)
+			.AddStoreEngine(hostBuilderContext.Configuration)
+	)
+
+	// the build
 	.Build();
 
 await host.RunAsync();

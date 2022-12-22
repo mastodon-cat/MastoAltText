@@ -10,7 +10,7 @@ public class BloggingContextFactory : IDesignTimeDbContextFactory<MastoAltTextDb
     public MastoAltTextDbContext CreateDbContext(string[] args)
     {
         IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
+            .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
             .AddJsonFile("appsettings.json", true)
             .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
             .Build();

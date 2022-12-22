@@ -15,9 +15,9 @@ IHost host =
 			// json, env vars or command line arguments.
 			hostConfig.SetBasePath(Directory.GetCurrentDirectory());
 			hostConfig.AddJsonFile("mastodoncredentials.json", optional: true);
-			hostConfig.AddEnvironmentVariables(prefix: "MASTOALTTEXT_");
-			hostConfig.AddCommandLine(args);
+			hostConfig.AddEnvironmentVariables(prefix: "MASTOALTTEXT_");			
 			hostConfig.AddUserSecrets(Assembly.GetExecutingAssembly(), true);
+			hostConfig.AddCommandLine(args);
 		}
 	)
 	.ConfigureServices((hostBuilderContext, services) =>

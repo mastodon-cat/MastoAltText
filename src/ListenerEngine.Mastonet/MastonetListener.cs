@@ -33,12 +33,20 @@ public class MastonetListener : ListenerEngine.IListener
 
 	public void Start()
 	{
+		CheckCredentials();
+
 		streaming = client.GetPublicLocalStreaming();
 		streaming.OnUpdate += OnUpdate;
 		streaming.Start();
 	}
 
-	private void OnUpdate(object? sender, StreamUpdateEventArgs e)
+    private void CheckCredentials()
+    {
+		var usr = client.GetCurrentUser().GetAwaiter().GetResult();			
+		logger.LogDebug("Connectat com {}", usr.AccountName);
+    }
+
+    private void OnUpdate(object? sender, StreamUpdateEventArgs e)
 	{
 		var tootId = e.Status.Id;
 		var accountId = e.Status.Account.Id;

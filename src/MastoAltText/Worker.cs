@@ -27,7 +27,7 @@ public class Worker : IHostedService
 		this.sender = sender;
 	}
 
-	public Task StartAsync(CancellationToken cancellationToken)
+	public async Task StartAsync(CancellationToken cancellationToken)
 	{
 		logger.LogInformation("Worker running");
 		listener.NewMediaToot += async (s, e) =>
@@ -46,8 +46,7 @@ public class Worker : IHostedService
 			}
 		};
 
-		listener.Start();
-		return Task.CompletedTask;
+		await listener.Start();
 	}
 
 	public Task StopAsync(CancellationToken cancellationToken)

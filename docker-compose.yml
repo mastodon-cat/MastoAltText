@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   app:
-    image: masto-alt-test:latest
+    image: masto-alt-text:latest
     volumes:
       - ./appsettings.Production.json:/app/appsettings.Production.json
     depends_on:

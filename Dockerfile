@@ -6,7 +6,7 @@ WORKDIR /app
 COPY src/ ./
 
 # Restore the project.
-RUN dotnet restore MastoAltText/
+RUN dotnet restore --configfile nuget.config MastoAltText/
 
 # Publish the project.
 RUN dotnet publish -c Release -o out MastoAltText/

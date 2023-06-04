@@ -6,37 +6,38 @@ using System.Reflection;
 using SenderEngine.Mastonet;
 
 IHost host =
-	Host
-	.CreateDefaultBuilder(args)
+    Host
+    .CreateDefaultBuilder(args)
+    // configuration
+    .ConfigureAppConfiguration(hostConfig =>
+    {
+        var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
+        if (string.IsNullOrWhiteSpace(environment))
+        {
+            environment = "Production";
+        }
 
-	// configuration
-	.ConfigureAppConfiguration( hostConfig =>
-
-		hostConfig
-			.SetBasePath(Directory.GetCurrentDirectory())
-			.AddJsonFile("mastodoncredentials.json", optional: true)
-			.AddEnvironmentVariables(prefix: "MASTOALTTEXT_")	
-			.AddUserSecrets(Assembly.GetExecutingAssembly(), true)
-			.AddCommandLine(args)		
-
-	)
-
-	// services
-	.ConfigureServices( (hostBuilderContext, services) =>
-
-		services
-
-			// The worker
-			.AddHostedService<Worker>()
-
-			// Dependencies
-			.AddMastonetListener(hostBuilderContext.Configuration)
-			.AddMastonetSender(hostBuilderContext.Configuration)
-			.AddIntelligenceEngine(hostBuilderContext.Configuration)
-			.AddStoreEngine(hostBuilderContext.Configuration)
-	)
-
-	// the build
-	.Build();
+        hostConfig
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false)
+            .AddJsonFile($"appsettings.{environment}.json", optional: false)
+            .AddEnvironmentVariables(prefix: "MASTOALTTEXT_")
+            .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
+            .AddCommandLine(args);
+    })
+    // services
+    .ConfigureServices((hostBuilderContext, services) =>
+    {
+        services
+            // The worker
+            .AddHostedService<Worker>()
+            // Dependencies
+            .AddMastonetListener(hostBuilderContext.Configuration)
+            .AddMastonetSender(hostBuilderContext.Configuration)
+            .AddIntelligenceEngine(hostBuilderContext.Configuration)
+            .AddStoreEngine(hostBuilderContext.Configuration);
+    })
+    // the build
+    .Build();
 
 await host.RunAsync();

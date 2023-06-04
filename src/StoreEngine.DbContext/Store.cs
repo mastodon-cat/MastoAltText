@@ -8,100 +8,111 @@ namespace StoreEngine.DbContext;
 
 public class Store : IStore
 {
-	private readonly MastoAltTextDbContext dbContext;
+    private readonly MastoAltTextDbContext dbContext;
 
-	public Store(IDbContextFactory<MastoAltTextDbContext> contextFactory)
-	{
-		dbContext = contextFactory.CreateDbContext();
-		Initialize();
-	}
+    public Store(IDbContextFactory<MastoAltTextDbContext> contextFactory)
+    {
+        dbContext = contextFactory.CreateDbContext();
+        Initialize();
+    }
 
-	public void Dispose()
-	{
-		dbContext.Dispose();
-	}
+    public void Dispose()
+    {
+        dbContext.Dispose();
+    }
 
-	public Task<List<MediaToot>> GetMediaTootsByUserIdAsync(string userId, int? year)
-	{
-		var query =
-			dbContext
-			.MediaToots
-			.Where(m => m.AccountId == userId);
+    /// <summary>
+    /// Creates the database and migrate if necessary.
+    /// </summary>
+    public async Task CreateDatabaseAndMigrateIfNecessary()
+    {
+        if ((await dbContext.Database.GetPendingMigrationsAsync()).Any())
+        {
+            await dbContext.Database.MigrateAsync();
+        }
+    }
 
-		if (year.HasValue)
-			query = query.Where(m => m.CreatedAt.Year == year);
+    public Task<List<MediaToot>> GetMediaTootsByUserIdAsync(string userId, int? year)
+    {
+        var query =
+            dbContext
+            .MediaToots
+            .Where(m => m.AccountId == userId);
 
-		return
-		query
-		.OrderBy(m => m.CreatedAt)
-		.Select(m => m.AsData())
-		.ToListAsync();
-	}
+        if (year.HasValue)
+            query = query.Where(m => m.CreatedAt.Year == year);
 
-	public Task<int> GetTootCountByUserIdAsync(string userId, bool? withDescription = null)
-	{
-		IQueryable<MediaTootModel> query = dbContext.MediaToots;
-		if (withDescription.HasValue)
-		{
-			if (withDescription.Value)
-			{
-				query = query.Where(t => t.HasAltText);
-			}
-			else
-			{
-				query = query.Where(t => !t.HasAltText);
-			}
-		}
+        return
+        query
+        .OrderBy(m => m.CreatedAt)
+        .Select(m => m.AsData())
+        .ToListAsync();
+    }
 
-		return query.CountAsync(t => t.AccountId == userId);
-	}
+    public Task<int> GetTootCountByUserIdAsync(string userId, bool? withDescription = null)
+    {
+        IQueryable<MediaTootModel> query = dbContext.MediaToots;
+        if (withDescription.HasValue)
+        {
+            if (withDescription.Value)
+            {
+                query = query.Where(t => t.HasAltText);
+            }
+            else
+            {
+                query = query.Where(t => !t.HasAltText);
+            }
+        }
 
-	public Task<int> GetNumberOfConsecutiveTootsWithDescriptionByUserIdAsync(string userId) =>
-		GetNumberOfConsecutiveTootsByUserIdInternal(userId, true);
+        return query.CountAsync(t => t.AccountId == userId);
+    }
 
-
-	public Task<int> GetNumberOfConsecutiveTootsWithoutDescriptionByUserIdAsync(string userId) =>
-		GetNumberOfConsecutiveTootsByUserIdInternal(userId, false);
-
-	private async Task<int> GetNumberOfConsecutiveTootsByUserIdInternal(string userId, bool withDescription)
-	{
-		var totalToots = await this.GetTootCountByUserIdAsync(userId);
-		var cutPoint = await dbContext.MediaToots
-			.Where(t => t.AccountId == userId && t.HasAltText == !withDescription)
-			.OrderByDescending(t => t.CreatedAt)
-			.FirstOrDefaultAsync();
-
-		if (cutPoint == null)
-		{
-			return totalToots;
-		}
-
-		return totalToots - cutPoint.UserSequenceNumber;
-	}
+    public Task<int> GetNumberOfConsecutiveTootsWithDescriptionByUserIdAsync(string userId) =>
+        GetNumberOfConsecutiveTootsByUserIdInternal(userId, true);
 
 
-	public async Task SaveMediaTootAsync(MediaToot mediaToot)
-	{
-		var tootDb = mediaToot.AsModel();
-		var lastUserToot = await dbContext.MediaToots
-			.Where(t => t.AccountId == mediaToot.AccountId)
-			.OrderByDescending(t => t.CreatedAt)
-			.FirstOrDefaultAsync();
-		tootDb.UserSequenceNumber = lastUserToot?.UserSequenceNumber ?? 1;
-		await dbContext
-			.MediaToots
-			.AddAsync(tootDb);
-			await dbContext
-			.SaveChangesAsync();
-	}
+    public Task<int> GetNumberOfConsecutiveTootsWithoutDescriptionByUserIdAsync(string userId) =>
+        GetNumberOfConsecutiveTootsByUserIdInternal(userId, false);
 
-	public void Initialize()
-	{
-		var db =
-			dbContext
-			.Database;
+    private async Task<int> GetNumberOfConsecutiveTootsByUserIdInternal(string userId, bool withDescription)
+    {
+        var totalToots = await this.GetTootCountByUserIdAsync(userId);
+        var cutPoint = await dbContext.MediaToots
+            .Where(t => t.AccountId == userId && t.HasAltText == !withDescription)
+            .OrderByDescending(t => t.CreatedAt)
+            .FirstOrDefaultAsync();
 
-		db
-			.Migrate();
-	}
+        if (cutPoint == null)
+        {
+            return totalToots;
+        }
+
+        return totalToots - cutPoint.UserSequenceNumber;
+    }
+
+
+    public async Task SaveMediaTootAsync(MediaToot mediaToot)
+    {
+        var tootDb = mediaToot.AsModel();
+        var lastUserToot = await dbContext.MediaToots
+            .Where(t => t.AccountId == mediaToot.AccountId)
+            .OrderByDescending(t => t.CreatedAt)
+            .FirstOrDefaultAsync();
+        tootDb.UserSequenceNumber = lastUserToot?.UserSequenceNumber ?? 1;
+        await dbContext
+            .MediaToots
+            .AddAsync(tootDb);
+        await dbContext
+        .SaveChangesAsync();
+    }
+
+    public void Initialize()
+    {
+        var db =
+            dbContext
+            .Database;
+
+        db
+            .Migrate();
+    }
 }

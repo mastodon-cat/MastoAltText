@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntelligenceEngine.FirstVersion.Entities
+namespace IntelligenceEngine.DynamicConditions.Entities
 {
     internal record UserMessage : IUserMessage
     {

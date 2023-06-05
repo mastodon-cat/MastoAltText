@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using IntelligenceEngine.FirstVersion.Entities;
+using IntelligenceEngine.DynamicConditions.Entities;
 
-namespace IntelligenceEngine.FirstVersion.Extensions
+namespace IntelligenceEngine.DynamicConditions.Extensions
 {
     internal static class AppMessageExtensions
 	{

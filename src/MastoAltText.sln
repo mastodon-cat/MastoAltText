@@ -1,39 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Listener", "ListenerEngine\Listener.csproj", "{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Listener", "ListenerEngine\Listener.csproj", "{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerEngine.Mastonet", "ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj", "{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListenerEngine.Mastonet", "ListenerEngine.Mastonet\ListenerEngine.Mastonet.csproj", "{FCC7F232-0C3B-440F-A8B1-BB9F3EC170F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastoAltText", "MastoAltText\MastoAltText.csproj", "{D32B56A2-2664-43B8-B0FD-A831BCE0328E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MastoAltText", "MastoAltText\MastoAltText.csproj", "{D32B56A2-2664-43B8-B0FD-A831BCE0328E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine", "StoreEngine\StoreEngine.csproj", "{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreEngine", "StoreEngine\StoreEngine.csproj", "{134C9469-DCA5-4A90-AAC0-7F2F5C6A4BED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreEngine.DbContext", "StoreEngine.DbContext\StoreEngine.DbContext.csproj", "{FF825BCD-5499-4B21-AA37-17DE24578120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreEngine.DbContext", "StoreEngine.DbContext\StoreEngine.DbContext.csproj", "{FF825BCD-5499-4B21-AA37-17DE24578120}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine", "IntelligenceEngine\IntelligenceEngine.csproj", "{78F53B45-C445-46DB-8A75-01D79D1FA155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntelligenceEngine", "IntelligenceEngine\IntelligenceEngine.csproj", "{78F53B45-C445-46DB-8A75-01D79D1FA155}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.FirstVersion", "IntelligenceEngine.FirstVersion\IntelligenceEngine.FirstVersion.csproj", "{C386B8D4-1471-4236-A95A-36D106952F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntelligenceEngine.DynamicConditions", "IntelligenceEngine.DynamicConditions\IntelligenceEngine.DynamicConditions.csproj", "{C386B8D4-1471-4236-A95A-36D106952F9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntelligenceEngine.Test.FirstVersion", "IntelligenceEngine.Test.FirstVersion\IntelligenceEngine.Test.FirstVersion.csproj", "{DD01AA58-0C41-4B4C-8B46-20602B909192}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntelligenceEngine.Test.DynamicConditions", "IntelligenceEngine.Test.DynamicConditions\IntelligenceEngine.Test.DynamicConditions.csproj", "{DD01AA58-0C41-4B4C-8B46-20602B909192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataClasses", "DataClasses\DataClasses.csproj", "{6DC6ECD0-F8D8-46F3-9372-855A3090F837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataClasses", "DataClasses\DataClasses.csproj", "{6DC6ECD0-F8D8-46F3-9372-855A3090F837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenderEngine", "SenderEngine\SenderEngine.csproj", "{1B16BF92-097D-4CD5-B686-330ECC381900}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderEngine", "SenderEngine\SenderEngine.csproj", "{1B16BF92-097D-4CD5-B686-330ECC381900}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenderEngine.Mastonet", "SenderEngine.Mastonet\SenderEngine.Mastonet.csproj", "{90ED14B4-26BF-40EB-9EDE-DFB8850D4531}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderEngine.Mastonet", "SenderEngine.Mastonet\SenderEngine.Mastonet.csproj", "{90ED14B4-26BF-40EB-9EDE-DFB8850D4531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SenderEngine.Test.Mastonet", "SenderEngine.Test.Mastonet\SenderEngine.Test.Mastonet.csproj", "{4A593183-411B-4907-A601-BB56C9DBD2D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderEngine.Test.Mastonet", "SenderEngine.Test.Mastonet\SenderEngine.Test.Mastonet.csproj", "{4A593183-411B-4907-A601-BB56C9DBD2D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BFBC34FA-4FC3-4E21-AD26-A4BBEED56273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -84,5 +81,11 @@ Global
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1564D93-862F-4DDF-B0A8-543343C24ED6}
 	EndGlobalSection
 EndGlobal

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using IntelligenceEngine.DynamicConditions.Entities;
 using FluentAssertions;
 
-namespace IntelligenceEngine.Test.FirstVersion
+namespace IntelligenceEngine.Test.DynamicConditions
 {
     public class IntelligenceTest
 	{

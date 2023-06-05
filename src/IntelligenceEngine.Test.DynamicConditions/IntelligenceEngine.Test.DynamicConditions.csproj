@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IntelligenceEngine.FirstVersion\IntelligenceEngine.DynamicConditions.csproj" />
+    <ProjectReference Include="..\IntelligenceEngine.DynamicConditions\IntelligenceEngine.DynamicConditions.csproj" />
   </ItemGroup>
 
 </Project>

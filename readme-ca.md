@@ -48,9 +48,6 @@ Aquest projecte requereix permisos per llegir els missatges locals, aquests perm
       "PublicMessage": "{name} has sent five toots with description to multimedia content. Thanks to people like {name} this node is more inclusive! Long live {name}! 🎆🎆"
     }
   ]
-  }
-  ]
-  }
 ```
 
 Com es veu a l'exemple, els camps que es poden usar són:
@@ -68,7 +65,7 @@ Amb aquests tres camps i el sistema de condicions podem definir els missatges qu
 Engega l'aplicació mitjançant docer-compose, executa la següent comanda:
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
 Això engega tots els serveis necessaris, incloent la base de dades Postgress i el sistema d'escolta.

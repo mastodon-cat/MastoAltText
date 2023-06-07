@@ -15,7 +15,7 @@ This project requires a Mastodon administrator to install it, as it needs an app
 3. **Modify the appsettings.Production.json file**: This file is located at the root of the project. You will need to change the name of the instance and the access token inside the "MastodonParms" node to match the created application and the URL of your instance.
 4. **Customize the messages in the "AppMessages" node**: Here you can add, edit or delete messages as you prefer. The conditions format is quite intuitive and is based on the total of multimedia toots sent, and which of them have multimedia description. There is also a field to indicate how many consecutive toots have been sent with description. Below is an example of a snippet of this node with two messages:
 
-  ```json
+```json
   "appMessages": [
     {
       "Conditions": [
@@ -46,27 +46,31 @@ This project requires a Mastodon administrator to install it, as it needs an app
       "PublicMessage": "{name} has sent five toots with description to multimedia content. Thanks to people like {name} this node is more inclusive! Long live {name}! 🎆🎆"
     }
   ]
-  }
-  ]
-  }
-  ```
-
-  As you can see, the fields that can be used are:
-
-  - "TootsWithDescription": The number of multimedia toots that this user has sent with description.
-  - "TotalToots": The total number of toots with multimedia content that the user has sent.
-  - "LastConsecutivesWithDescription": The number of consecutive toots that the user has sent with multimedia and description.
-
-  With these three fields and the conditions system, we can define the messages we want to send, both to the user and publicly. The placeholder {name} will be replaced at runtime with the name of the account we are talking about.
-
-  If you notice, the conditions within the array are evaluated as "and". There is currently no way to nest conditions or use "or" operators.
-
-5. Start the application using docker-compose: Run the following command:
-
-  ```bash
-  docker-compose up
 ```
 
-  This will start all necessary services, including the Postgres database and listening system. As a suggestion, you can add this boot command to your operating system boot system so that it starts automatically at startup, and you can manage it as a service. [Here is an example of how to achieve adding your docker-compose command in systemctl using Ubuntu](https://gist.github.com/mosquito/b23e1c1e5723a7fd9e6568e5cf91180f).
+As you can see, the fields that can be used are:
 
-We hope you find the application useful, and please, any contribution will be more than welcome!
+- "TootsWithDescription": The number of multimedia toots that this user has sent with description.
+- "TotalToots": The total number of toots with multimedia content that the user has sent.
+- "LastConsecutivesWithDescription": The number of consecutive toots that the user has sent with multimedia and description.
+
+With these three fields and the conditions system, we can define the messages we want to send, both to the user and publicly. The placeholder {name} will be replaced at runtime with the name of the account we are talking about.
+
+If you notice, the conditions within the array are evaluated as "and". There is currently no way to nest conditions or use "or" operators.
+
+## Starting
+
+Start the application using docker-compose: Run the following command:
+
+```bash
+  docker compose up
+```
+
+This will start all necessary services, including the Postgres database and listening system. 
+
+>As a suggestion, you can add this boot command to your operating system boot system so that it starts automatically at startup, and you can manage it as a service. [Here is an example of how to achieve adding your docker-compose command in systemctl using Ubuntu](https://gist.github.com/mosquito/b23e1c1e5723a7fd9e6568e5cf91180f).
+
+## Contributions
+
+We hope you find the application useful!
+Any contribution will be more than welcome!

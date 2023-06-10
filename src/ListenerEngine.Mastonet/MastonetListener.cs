@@ -1,8 +1,13 @@
-﻿using Mastonet;
-using Microsoft.Extensions.Logging;
-using DataClasses;
-using Microsoft.Extensions.Options;
+﻿using DataClasses;
+
+using ListenerEngine.Mastonet.Logging;
+
 using MastoAltText.Common.Exceptions;
+
+using Mastonet;
+
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace ListenerEngine.Mastonet;
 public class MastonetListener : ListenerEngine.IListener
@@ -51,7 +56,7 @@ public class MastonetListener : ListenerEngine.IListener
     private async Task CheckCredentials()
     {
 		var usr = await client.GetCurrentUser();			
-		logger.LogDebug("Connectat com {}", usr.AccountName);
+		logger.LogConnectedAs(usr.AccountName);
     }
 
     private void OnUpdate(object? sender, StreamUpdateEventArgs e)
@@ -63,11 +68,12 @@ public class MastonetListener : ListenerEngine.IListener
 		var hasAltText = e.Status.MediaAttachments.Any(x => !string.IsNullOrEmpty(x.Description));
 		var createdAt = e.Status.CreatedAt;
 
-		logger.LogInformation(
-			$"StatusId: [{tootId}] AccountName [{accountName}] AccountId: [{accountId}] " +
-			"HasMedia: [{hasMedia}] HasAltText: [{hasAltText}]",
+		logger.LogTootReceived(
+			tootId,
+			accountName,
+			accountId,
 			hasMedia ? "yes" : "no",
-			hasMedia && hasAltText ? "yes" : hasMedia && !hasAltText ? "no" : ""
+			hasMedia && hasAltText ? "yes" : hasMedia && !hasAltText ? "no" : "N/A"
 		);
 
 		if (hasMedia)

@@ -8,7 +8,7 @@ namespace IntelligenceEngine;
 
 public interface IMediaDescriptionUserState
 {
-	public int TotalToots { get; }
-	public int TootsWithDescription { get; }
-	public int PercentajeTootsWithDescription { get; }
+    public int TotalToots { get; }
+    public int TootsWithDescription { get; }
+    public int PercentajeTootsWithDescription { get; }
 }

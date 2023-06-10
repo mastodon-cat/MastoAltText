@@ -10,8 +10,8 @@ namespace MastoAltText.Common.Exceptions;
 
 public class PropertyNullException : ArgumentException
 {
-	public PropertyNullException(string paramName, string propertyName)
-		: base($"{propertyName} property in {paramName} cannot be null.", paramName)
-	{
-	}
+    public PropertyNullException(string paramName, string propertyName)
+        : base($"{propertyName} property in {paramName} cannot be null.", paramName)
+    {
+    }
 }

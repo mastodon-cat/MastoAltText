@@ -10,7 +10,7 @@ namespace IntelligenceEngine.DynamicConditions.Entities
     {
         public MessageType MessageType { get; init; }
 
-		public string? Message { get; init; }
+        public string? Message { get; init; }
 
         public string? PublicMessage { get; init; }
     }

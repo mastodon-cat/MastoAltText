@@ -8,7 +8,7 @@ namespace ListenerEngine.Mastonet;
 public static class MastonetListenerServiceExtensions
 {
     public static IServiceCollection AddMastonetListener(
-        this IServiceCollection serviceCollection, 
+        this IServiceCollection serviceCollection,
         IConfiguration configuration)
             =>
             serviceCollection

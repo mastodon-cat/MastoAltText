@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace IntelligenceEngine
 {
-	public interface IUserMessage
-	{
-		MessageType MessageType { get; }
-		string? Message { get; }
-		string? PublicMessage { get; }
-	}
+    public interface IUserMessage
+    {
+        MessageType MessageType { get; }
+        string? Message { get; }
+        string? PublicMessage { get; }
+    }
 }

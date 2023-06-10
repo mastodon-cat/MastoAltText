@@ -9,8 +9,8 @@ using IntelligenceEngine.DynamicConditions.Entities;
 namespace IntelligenceEngine.DynamicConditions.Extensions
 {
     internal static class AppMessageExtensions
-	{
-		internal static IUserMessage ToUserMessage(this AppMessage message) =>
-			new UserMessage { Message = message.Message, MessageType = message.MessageType, PublicMessage = message.PublicMessage };
-	}
+    {
+        internal static IUserMessage ToUserMessage(this AppMessage message) =>
+            new UserMessage { Message = message.Message, MessageType = message.MessageType, PublicMessage = message.PublicMessage };
+    }
 }

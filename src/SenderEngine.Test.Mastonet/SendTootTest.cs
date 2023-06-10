@@ -15,26 +15,17 @@ public class SendTootTest
     [InlineData(true)]
     public async Task ThisIsArealTootSender(bool useMock)
     {
-        var config =
-            new ConfigurationBuilder()
-            .AddUserSecrets(Assembly.GetExecutingAssembly(), false)
-            .Build();
-
         var services =
             new ServiceCollection()
-            .Configure<MastodonParms>(config.GetSection(nameof(MastodonParms)))
-            .AddSingleton<ISender, MastonetSender>()
             .AddSingleton(Mock.Of<ILogger<MastonetSender>>());
 
         if (useMock)
         {
-            services
-            .AddSingleton(Mock.Of<ISender>());
+            services.MockServices();
         }
         else
         {
-            services
-            .AddSingleton<ISender, MastonetSender>();
+            services.RealServices();
         }
 
         var provider =
@@ -49,4 +40,6 @@ public class SendTootTest
             true,
             "cat");
     }
+
+
 }

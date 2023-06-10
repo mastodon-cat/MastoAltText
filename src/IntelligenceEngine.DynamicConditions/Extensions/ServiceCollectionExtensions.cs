@@ -1,8 +1,8 @@
-﻿using IntelligenceEngine.FirstVersion.Entities;
+﻿using IntelligenceEngine.DynamicConditions.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace IntelligenceEngine.FirstVersion.Extensions;
+namespace IntelligenceEngine.DynamicConditions.Extensions;
 
 public static class ServiceCollectionExtensions
 {

@@ -4,7 +4,7 @@ using Moq;
 
 using StoreEngine;
 
-namespace IntelligenceEngine.Test.FirstVersion;
+namespace IntelligenceEngine.Test.DynamicConditions;
 
 public static class TestHelpers
 {

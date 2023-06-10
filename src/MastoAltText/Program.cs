@@ -1,4 +1,4 @@
-using IntelligenceEngine.FirstVersion.Extensions;
+using IntelligenceEngine.DynamicConditions.Extensions;
 using ListenerEngine.Mastonet;
 using MastoAltText;
 using StoreEngine.DbContext;

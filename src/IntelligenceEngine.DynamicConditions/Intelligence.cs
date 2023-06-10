@@ -29,7 +29,7 @@ public class Intelligence : IIntelligence
 		return messages.FirstOrDefault(m => MessageMatchWithUserState(m, userState))?.ToUserMessage();
 	}
 
-	private bool MessageMatchWithUserState(AppMessage message, MediaDescriptionUserState userState)
+	private static bool MessageMatchWithUserState(AppMessage message, MediaDescriptionUserState userState)
 	{
 		List<string> conditions = new();
 		foreach (var condition in message.Conditions)

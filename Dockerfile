@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 WORKDIR /app
 
-# Copy everything from MastoAltText directory to /app in the container.
+# Copy everything from MastoAltText/src  directory to /app in the container.
 COPY src/ ./
 
 # Restore the project.

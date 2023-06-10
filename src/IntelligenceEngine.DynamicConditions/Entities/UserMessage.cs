@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace IntelligenceEngine.DynamicConditions.Entities
 {
-    internal record UserMessage : IUserMessage
+    internal sealed record UserMessage : IUserMessage
     {
         public MessageType MessageType { get; init; }
 
-        public string? Message { get; init; }
+		public string? Message { get; init; }
 
         public string? PublicMessage { get; init; }
     }

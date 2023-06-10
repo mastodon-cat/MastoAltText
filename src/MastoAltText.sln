@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderEngine.Mastonet", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SenderEngine.Test.Mastonet", "SenderEngine.Test.Mastonet\SenderEngine.Test.Mastonet.csproj", "{4A593183-411B-4907-A601-BB56C9DBD2D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MastoAltText.Common", "MastoAltText.Common\MastoAltText.Common.csproj", "{22AA5379-4675-4A04-8EA3-363EA3CAE9D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A593183-411B-4907-A601-BB56C9DBD2D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22AA5379-4675-4A04-8EA3-363EA3CAE9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22AA5379-4675-4A04-8EA3-363EA3CAE9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22AA5379-4675-4A04-8EA3-363EA3CAE9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22AA5379-4675-4A04-8EA3-363EA3CAE9D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AnalysisLevel>latest-Recommended</AnalysisLevel>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MastoAltText.Common\MastoAltText.Common.csproj" />
+	</ItemGroup>
 
 </Project>

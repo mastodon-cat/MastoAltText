@@ -12,9 +12,8 @@ public class MastonetSender : ISender
 {
 	private readonly MastodonParms config;
 	private readonly MastodonClient client;
-	private readonly ILogger<MastonetSender> logger;
 
-	public MastonetSender(IOptions<MastodonParms> config, ILogger<MastonetSender> logger)
+	public MastonetSender(IOptions<MastodonParms> config)
 	{
 		if (config is null)
 		{
@@ -22,7 +21,6 @@ public class MastonetSender : ISender
 		}
 
 		this.config = config.Value;
-		this.logger = logger;
 		client = new MastodonClient(
 			this.config.Instance ?? throw new PropertyNullException("Instance cannot be null.", nameof(this.config.Instance)),
 			this.config.AccessToken ?? throw new PropertyNullException("Config.AccessToken cannot be null.", nameof(this.config.AccessToken))

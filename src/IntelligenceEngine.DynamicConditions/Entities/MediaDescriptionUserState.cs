@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IntelligenceEngine.DynamicConditions.Entities;
 
-internal record MediaDescriptionUserState : IMediaDescriptionUserState
+internal sealed record MediaDescriptionUserState : IMediaDescriptionUserState
 {
     private int? percentaje;
 

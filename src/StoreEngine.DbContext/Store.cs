@@ -19,6 +19,7 @@ public class Store : IStore
     public void Dispose()
     {
         dbContext.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     /// <summary>

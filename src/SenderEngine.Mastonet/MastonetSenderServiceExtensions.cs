@@ -6,7 +6,7 @@ namespace SenderEngine.Mastonet;
 public static class MastonetSenderServiceExtensions
 {
     public static IServiceCollection AddMastonetSender(
-        this IServiceCollection serviceCollection, 
+        this IServiceCollection serviceCollection,
         Microsoft.Extensions.Configuration.IConfiguration configuration)
             =>
             serviceCollection

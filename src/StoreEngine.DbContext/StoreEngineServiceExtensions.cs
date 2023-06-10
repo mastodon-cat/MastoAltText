@@ -8,7 +8,7 @@ namespace StoreEngine.DbContext;
 public static class MastonetListenerServiceExtensions
 {
     public static IServiceCollection AddStoreEngine(
-        this IServiceCollection services, 
+        this IServiceCollection services,
         IConfiguration configuration)
         =>
         services
@@ -17,5 +17,5 @@ public static class MastonetListenerServiceExtensions
                 options.UseNpgsql(configuration.GetConnectionString("MastonetDbContextDatabase"))
         )
         .AddSingleton<IStore, Store>();
-    
+
 }

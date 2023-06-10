@@ -12,9 +12,9 @@ public class MediaToot
     }
 
     public int? SequenceNumber { get; set; }
-    public string AccountId {get;  }
-    public string AccountName {get; }
-    public string TootId {get; }
-    public bool HasAltText {get;  }
-    public DateTime CreatedAt { get; } 
+    public string AccountId { get; }
+    public string AccountName { get; }
+    public string TootId { get; }
+    public bool HasAltText { get; }
+    public DateTime CreatedAt { get; }
 }

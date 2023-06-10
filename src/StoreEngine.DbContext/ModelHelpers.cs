@@ -6,7 +6,7 @@ public static class ModelHelpers
 {
     public static MediaTootModel AsModel(this MediaToot mediaToot)
         =>
-        new ()
+        new()
         {
             AccountId = mediaToot.AccountId,
             AccountName = mediaToot.AccountName,

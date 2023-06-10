@@ -5,6 +5,7 @@ using StoreEngine.DbContext;
 using System.Reflection;
 using SenderEngine.Mastonet;
 
+#pragma warning disable CA1852 // Seal internal types
 IHost host =
     Host
     .CreateDefaultBuilder(args)
@@ -39,5 +40,6 @@ IHost host =
     })
     // the build
     .Build();
+#pragma warning restore CA1852 // Seal internal types
 
 await host.RunAsync();

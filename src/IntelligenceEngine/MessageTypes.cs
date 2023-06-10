@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace IntelligenceEngine;
 public enum MessageType
 {
-	Warn,
-	Reward
+    Warn,
+    Reward
 }

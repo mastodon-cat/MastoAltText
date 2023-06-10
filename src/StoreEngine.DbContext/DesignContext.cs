@@ -14,12 +14,12 @@ public class BloggingContextFactory : IDesignTimeDbContextFactory<MastoAltTextDb
             .AddJsonFile("appsettings.json", true)
             .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
             .Build();
-            
-        var optionsBuilder = 
+
+        var optionsBuilder =
             new
             DbContextOptionsBuilder<MastoAltTextDbContext>()
             .UseNpgsql(configuration.GetConnectionString("MastonetDbContextDatabase"));
-            
+
         return new MastoAltTextDbContext(optionsBuilder.Options);
     }
 }
